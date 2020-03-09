@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki-headless
+  namespace: default
+  labels:
+    app: loki
+    chart: loki-0.25.1
+    release: loki
+    heritage: Helm
+spec:
+  clusterIP: None
+  ports:
+    - port: 3100
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+  selector:
+    app: loki
+    release: loki
