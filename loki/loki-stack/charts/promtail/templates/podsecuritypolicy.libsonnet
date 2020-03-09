@@ -2,18 +2,19 @@
   "apiVersion": "policy/v1beta1",
   "kind": "PodSecurityPolicy",
   "metadata": {
-    "name": "loki"
+    "labels": {
+      "app": "promtail",
+      "chart": "promtail-0.19.2",
+      "heritage": "Helm",
+      "release": "loki"
+    },
+    "name": "loki-promtail",
+    "namespace": "default"
   },
   "spec": {
     "allowPrivilegeEscalation": false,
     "fsGroup": {
-      "ranges": [
-        {
-          "max": 65535,
-          "min": 1
-        }
-      ],
-      "rule": "MustRunAs"
+      "rule": "RunAsAny"
     },
     "hostIPC": false,
     "hostNetwork": false,
@@ -24,25 +25,18 @@
       "ALL"
     ],
     "runAsUser": {
-      "rule": "MustRunAsNonRoot"
+      "rule": "RunAsAny"
     },
     "seLinux": {
       "rule": "RunAsAny"
     },
     "supplementalGroups": {
-      "ranges": [
-        {
-          "max": 65535,
-          "min": 1
-        }
-      ],
-      "rule": "MustRunAs"
+      "rule": "RunAsAny"
     },
     "volumes": [
+      "secret",
       "configMap",
-      "emptyDir",
-      "persistentVolumeClaim",
-      "secret"
+      "hostPath"
     ]
   }
 }
