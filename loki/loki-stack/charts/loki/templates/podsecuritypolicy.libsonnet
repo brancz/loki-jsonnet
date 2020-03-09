@@ -1,48 +1,48 @@
 {
-  "apiVersion": "policy/v1beta1",
-  "kind": "PodSecurityPolicy",
-  "metadata": {
-    "name": "loki"
+  apiVersion: 'policy/v1beta1',
+  kind: 'PodSecurityPolicy',
+  metadata: {
+    name: 'loki',
   },
-  "spec": {
-    "allowPrivilegeEscalation": false,
-    "fsGroup": {
-      "ranges": [
+  spec: {
+    allowPrivilegeEscalation: false,
+    fsGroup: {
+      ranges: [
         {
-          "max": 65535,
-          "min": 1
-        }
+          max: 65535,
+          min: 1,
+        },
       ],
-      "rule": "MustRunAs"
+      rule: 'MustRunAs',
     },
-    "hostIPC": false,
-    "hostNetwork": false,
-    "hostPID": false,
-    "privileged": false,
-    "readOnlyRootFilesystem": true,
-    "requiredDropCapabilities": [
-      "ALL"
+    hostIPC: false,
+    hostNetwork: false,
+    hostPID: false,
+    privileged: false,
+    readOnlyRootFilesystem: true,
+    requiredDropCapabilities: [
+      'ALL',
     ],
-    "runAsUser": {
-      "rule": "MustRunAsNonRoot"
+    runAsUser: {
+      rule: 'MustRunAsNonRoot',
     },
-    "seLinux": {
-      "rule": "RunAsAny"
+    seLinux: {
+      rule: 'RunAsAny',
     },
-    "supplementalGroups": {
-      "ranges": [
+    supplementalGroups: {
+      ranges: [
         {
-          "max": 65535,
-          "min": 1
-        }
+          max: 65535,
+          min: 1,
+        },
       ],
-      "rule": "MustRunAs"
+      rule: 'MustRunAs',
     },
-    "volumes": [
-      "configMap",
-      "emptyDir",
-      "persistentVolumeClaim",
-      "secret"
-    ]
-  }
+    volumes: [
+      'configMap',
+      'emptyDir',
+      'persistentVolumeClaim',
+      'secret',
+    ],
+  },
 }

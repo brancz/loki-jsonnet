@@ -1,30 +1,30 @@
 {
-  "apiVersion": "rbac.authorization.k8s.io/v1",
-  "kind": "Role",
-  "metadata": {
-    "labels": {
-      "app": "loki",
-      "chart": "loki-0.25.1",
-      "heritage": "Helm",
-      "release": "loki"
+  apiVersion: 'rbac.authorization.k8s.io/v1',
+  kind: 'Role',
+  metadata: {
+    labels: {
+      app: 'loki',
+      chart: 'loki-0.25.1',
+      heritage: 'Helm',
+      release: 'loki',
     },
-    "name": "loki",
-    "namespace": "default"
+    name: 'loki',
+    namespace: 'default',
   },
-  "rules": [
+  rules: [
     {
-      "apiGroups": [
-        "extensions"
+      apiGroups: [
+        'extensions',
       ],
-      "resourceNames": [
-        "loki"
+      resourceNames: [
+        'loki',
       ],
-      "resources": [
-        "podsecuritypolicies"
+      resources: [
+        'podsecuritypolicies',
       ],
-      "verbs": [
-        "use"
-      ]
-    }
-  ]
+      verbs: [
+        'use',
+      ],
+    },
+  ],
 }

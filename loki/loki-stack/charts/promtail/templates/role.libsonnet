@@ -1,30 +1,30 @@
 {
-  "apiVersion": "rbac.authorization.k8s.io/v1",
-  "kind": "Role",
-  "metadata": {
-    "labels": {
-      "app": "promtail",
-      "chart": "promtail-0.19.2",
-      "heritage": "Helm",
-      "release": "loki"
+  apiVersion: 'rbac.authorization.k8s.io/v1',
+  kind: 'Role',
+  metadata: {
+    labels: {
+      app: 'promtail',
+      chart: 'promtail-0.19.2',
+      heritage: 'Helm',
+      release: 'loki',
     },
-    "name": "loki-promtail",
-    "namespace": "default"
+    name: 'loki-promtail',
+    namespace: 'default',
   },
-  "rules": [
+  rules: [
     {
-      "apiGroups": [
-        "extensions"
+      apiGroups: [
+        'extensions',
       ],
-      "resourceNames": [
-        "loki-promtail"
+      resourceNames: [
+        'loki-promtail',
       ],
-      "resources": [
-        "podsecuritypolicies"
+      resources: [
+        'podsecuritypolicies',
       ],
-      "verbs": [
-        "use"
-      ]
-    }
-  ]
+      verbs: [
+        'use',
+      ],
+    },
+  ],
 }
