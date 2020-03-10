@@ -2,14 +2,7 @@
   apiVersion: 'v1',
   kind: 'Service',
   metadata: {
-    labels: {
-      app: 'loki',
-      chart: 'loki-0.25.1',
-      heritage: 'Helm',
-      release: 'loki',
-    },
     name: 'loki-headless',
-    namespace: 'default',
   },
   spec: {
     clusterIP: 'None',

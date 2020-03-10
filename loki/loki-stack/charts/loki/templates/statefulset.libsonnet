@@ -2,15 +2,7 @@
   apiVersion: 'apps/v1',
   kind: 'StatefulSet',
   metadata: {
-    annotations: {},
-    labels: {
-      app: 'loki',
-      chart: 'loki-0.25.1',
-      heritage: 'Helm',
-      release: 'loki',
-    },
     name: 'loki',
-    namespace: 'default',
   },
   spec: {
     podManagementPolicy: 'OrderedReady',
