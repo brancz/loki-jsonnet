@@ -469,7 +469,6 @@
     kind: 'PodSecurityPolicy',
     metadata: {
       name: promtail.config.name,
-      namespace: promtail.config.namespace,
     },
     spec: {
       allowPrivilegeEscalation: false,
