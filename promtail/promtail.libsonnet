@@ -524,7 +524,7 @@
       },
       clients: [
         {
-          url: 'http://loki-%d:3100/loki/api/v1/push' % [i],
+          url: 'http://%s-%d.%s:3100/loki/api/v1/push' % [promtail.config.loki.statefulSetName, i, promtail.config.loki.serviceName],
           backoff_config: {
             maxbackoff: '5s',
             maxretries: 20,

@@ -14,6 +14,8 @@ local promtail = (import 'loki-jsonnet/promtail/promtail.libsonnet') {
     image: 'grafana/promtail:v1.3.0',
     version: '1.3.0',
     loki: {
+      statefulSetName: loki.statefulset.metadata.name,
+      serviceName: loki.service.metadata.name,
       replicas: loki.statefulset.spec.replicas,
     },
   },
