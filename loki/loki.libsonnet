@@ -22,6 +22,14 @@
     },
   },
 
+  datasource:: {
+    access: 'proxy',
+    name: loki.config.name,
+    type: 'loki',
+    url: 'http://%s.%s.svc.cluster.local.:3100' % [loki.config.name, loki.config.namespace],
+    version: 1,
+  },
+
   podsecuritypolicy: {
     apiVersion: 'policy/v1beta1',
     kind: 'PodSecurityPolicy',
