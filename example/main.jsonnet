@@ -13,6 +13,9 @@ local promtail = (import 'loki-jsonnet/promtail/promtail.libsonnet') {
     namespace: 'loki',
     image: 'grafana/promtail:v1.3.0',
     version: '1.3.0',
+    loki: {
+      replicas: loki.statefulset.spec.replicas,
+    },
   },
 };
 

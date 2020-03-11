@@ -26,7 +26,7 @@
     access: 'proxy',
     name: loki.config.name,
     type: 'loki',
-    url: 'http://%s.%s.svc.cluster.local.:3100' % [loki.config.name, loki.config.namespace],
+    url: 'http://%s.%s.svc:3100' % [loki.config.name, loki.config.namespace],
     version: 1,
     editable: false,
   },
@@ -215,6 +215,7 @@
         },
       ],
       selector: loki.config.podLabelSelector,
+      sessionAffinity: 'ClientIP',
       type: 'ClusterIP',
     },
   },
@@ -227,7 +228,7 @@
     },
     spec: {
       podManagementPolicy: 'OrderedReady',
-      replicas: 1,
+      replicas: 2,
       selector: {
         matchLabels: loki.config.podLabelSelector,
       },

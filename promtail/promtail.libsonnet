@@ -7,6 +7,10 @@
     image: error 'must provide image',
     version: error 'must provide version',
 
+    loki: {
+      replicas: error 'must provide loki replicas',
+    },
+
     commonLabels:: {
       'app.kubernetes.io/name': 'promtail',
       'app.kubernetes.io/instance': promtail.config.name,
@@ -71,17 +75,6 @@
     local configmap = self,
 
     config:: {
-      client: {
-        backoff_config: {
-          maxbackoff: '5s',
-          maxretries: 20,
-          minbackoff: '100ms',
-        },
-        batchsize: 102400,
-        batchwait: '1s',
-        external_labels: {},
-        timeout: '10s',
-      },
       positions: {
         filename: '/run/promtail/positions.yaml',
       },
@@ -529,6 +522,21 @@
       server: {
         http_listen_port: 3101,
       },
+      clients: [
+        {
+          url: 'http://loki-%d:3100/loki/api/v1/push' % [i],
+          backoff_config: {
+            maxbackoff: '5s',
+            maxretries: 20,
+            minbackoff: '100ms',
+          },
+          batchsize: 102400,
+          batchwait: '1s',
+          external_labels: {},
+          timeout: '10s',
+        }
+        for i in std.range(0, promtail.config.loki.replicas - 1)
+      ],
       target_config: {
         sync_period: '10s',
       },
@@ -567,7 +575,6 @@
             {
               args: [
                 '-config.file=/etc/promtail/promtail.yaml',
-                '-client.url=http://loki:3100/loki/api/v1/push',
               ],
               env: [
                 {
