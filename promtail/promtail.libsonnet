@@ -35,13 +35,13 @@
     roleRef: {
       apiGroup: 'rbac.authorization.k8s.io',
       kind: 'ClusterRole',
-      name: promtail.config.name,
+      name: promtail.clusterrole.metadata.name,
     },
     subjects: [
       {
         kind: 'ServiceAccount',
         name: promtail.serviceaccount.metadata.name,
-        namespace: promtail.config.namespace,
+        namespace: promtail.serviceaccount.metadata.namespace,
       },
     ],
   },
@@ -741,7 +741,7 @@
           'extensions',
         ],
         resourceNames: [
-          'loki-promtail',
+          promtail.podsecuritypolicy.metadata.name,
         ],
         resources: [
           'podsecuritypolicies',
