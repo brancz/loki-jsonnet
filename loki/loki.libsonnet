@@ -28,6 +28,7 @@
     type: 'loki',
     url: 'http://%s.%s.svc.cluster.local.:3100' % [loki.config.name, loki.config.namespace],
     version: 1,
+    editable: false,
   },
 
   podsecuritypolicy: {
