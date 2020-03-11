@@ -147,7 +147,7 @@
               target_label: 'container_name',
             },
             {
-              replacement: '/var/log/pods/*/*.log',
+              replacement: '/var/log/pods/*$1/*.log',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_pod_uid',
@@ -232,7 +232,7 @@
               target_label: 'container_name',
             },
             {
-              replacement: '/var/log/pods/*/*.log',
+              replacement: '/var/log/pods/*$1/*.log',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_pod_uid',
@@ -326,7 +326,7 @@
               target_label: 'container_name',
             },
             {
-              replacement: '/var/log/pods/*/*.log',
+              replacement: '/var/log/pods/*$1/*.log',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_pod_uid',
@@ -422,7 +422,7 @@
               target_label: 'container_name',
             },
             {
-              replacement: '/var/log/pods/*/*.log',
+              replacement: '/var/log/pods/*$1/*.log',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_pod_uid',
@@ -508,7 +508,7 @@
               target_label: 'container_name',
             },
             {
-              replacement: '/var/log/pods/*/*.log',
+              replacement: '/var/log/pods/*$1/*.log',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_pod_annotation_kubernetes_io_config_mirror',
