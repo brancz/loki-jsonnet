@@ -21,6 +21,21 @@ local promtail = (import 'loki-jsonnet/promtail/promtail.libsonnet') {
   },
 };
 
+local lokiCanaries = [
+  (import 'loki-jsonnet/loki-canary/loki-canary.libsonnet') {
+    config+:: {
+      name: 'loki-canary-%d' % i,
+      namespace: 'loki',
+      image: 'grafana/loki-canary:v1.3.0',
+      version: '1.3.0',
+
+      loki: {
+        addr: '%s-%d.%s:3100' % [loki.statefulset.metadata.name, i, loki.service.metadata.name],
+      },
+    },
+  }
+  for i in std.range(0, loki.statefulset.spec.replicas - 1)
+];
 
 local grafana = ((import 'grafana/grafana.libsonnet') {
                    _config+:: {
@@ -44,4 +59,8 @@ local grafana = ((import 'grafana/grafana.libsonnet') {
 ] + [
   promtail[name]
   for name in std.objectFields(promtail)
+] + [
+  lokiCanary[name]
+  for lokiCanary in lokiCanaries
+  for name in std.objectFields(lokiCanary)
 ]
