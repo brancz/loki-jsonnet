@@ -44,17 +44,18 @@
         spec: {
           containers: [
             {
+              local port = 8080,
               name: 'loki-canary',
               image: lokiCanary.config.image,
               args: [
                 '-labelname=instance',
                 '-labelvalue=$(POD_NAME)',
-                '-port=8080',
+                '-port=%d' % port,
                 '-addr=' + lokiCanary.config.loki.addr,
               ],
               ports: [
                 {
-                  containerPort: 80,
+                  containerPort: port,
                   name: 'http-metrics',
                 },
               ],
