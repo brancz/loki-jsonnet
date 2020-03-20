@@ -204,6 +204,7 @@
     metadata: {
       name: loki.config.name,
       namespace: loki.config.namespace,
+      labels: loki.config.commonLabels,
     },
     spec: {
       ports: [
