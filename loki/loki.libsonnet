@@ -314,4 +314,25 @@
       },
     },
   },
+
+  withVolumeClaimTemplate:: {
+    local l = self,
+    config+:: {
+      volumeClaimTemplate: error 'must provide volumeClaimTemplate',
+    },
+    statefulset+: {
+      spec+: {
+        template+: {
+          spec+: {
+            volumes: std.filter(function(v) v.name != 'storage', super.volumes),
+          },
+        },
+        volumeClaimTemplates: [l.config.volumeClaimTemplate {
+          metadata+: {
+            name: 'storage',
+          },
+        }],
+      },
+    },
+  },
 }
