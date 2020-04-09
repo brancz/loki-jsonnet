@@ -127,11 +127,12 @@
 
     config:: {
       auth_enabled: false,
+      chunk_encoding: 'lz4',
       chunk_store_config: {
         max_look_back_period: 0,
       },
       ingester: {
-        chunk_block_size: 262144,
+        chunk_block_size: 1572864,
         chunk_idle_period: '3m',
         chunk_retain_period: '1m',
         lifecycler: {
