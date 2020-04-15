@@ -287,12 +287,6 @@
               ],
             },
           ],
-          securityContext: {
-            fsGroup: 10001,
-            runAsGroup: 10001,
-            runAsNonRoot: true,
-            runAsUser: 10001,
-          },
           serviceAccountName: loki.serviceaccount.metadata.name,
           terminationGracePeriodSeconds: 4800,
           volumes: [

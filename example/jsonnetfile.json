@@ -1,4 +1,5 @@
 {
+  "version": 1,
   "dependencies": [
     {
       "name": "grafana",
@@ -10,5 +11,6 @@
       },
       "version": "master"
     }
-  ]
+  ],
+  "legacyImports": true
 }

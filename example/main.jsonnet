@@ -45,6 +45,23 @@ local grafana = ((import 'grafana/grafana.libsonnet') {
                        datasources: [loki.datasource],
                      },
                    },
+
+                   grafana+: {
+                     deployment+: {
+                       spec+: {
+                         template+: {
+                           spec+: {
+                             containers: [
+                               if c.name == 'grafana' then c {
+                                 securityContext: {},
+                               } else c
+                               for c in super.containers
+                             ],
+                           },
+                         },
+                       },
+                     },
+                   },
                  }).grafana;
 
 [
