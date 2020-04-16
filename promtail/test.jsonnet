@@ -4,6 +4,12 @@ local promtail = (import 'promtail.libsonnet') {
     namespace: 'loki',
     image: 'grafana/promtail:v1.3.0',
     version: '1.3.0',
+
+    loki+: {
+      replicas: 1,
+      statefulSetName: 'loki',
+      serviceName: 'loki',
+    },
   },
 };
 

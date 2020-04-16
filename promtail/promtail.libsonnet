@@ -9,6 +9,8 @@
 
     loki: {
       replicas: error 'must provide loki replicas',
+      statefulSetName: error 'must provide loki statefulset name',
+      serviceName: error 'must provide loki service name',
     },
 
     commonLabels:: {
@@ -607,6 +609,7 @@
                 timeoutSeconds: 1,
               },
               securityContext: {
+                privileged: true,
                 readOnlyRootFilesystem: true,
                 runAsGroup: 0,
                 runAsUser: 0,
