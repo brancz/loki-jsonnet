@@ -763,4 +763,25 @@
       namespace: promtail.config.namespace,
     },
   },
+
+  withPrivilegedSecurityContextConstraint:: {
+    clusterrole+: {
+      rules+: [
+        {
+          verbs: [
+            'use',
+          ],
+          apiGroups: [
+            'security.openshift.io',
+          ],
+          resources: [
+            'securitycontextconstraints',
+          ],
+          resourceNames: [
+            'privileged',
+          ],
+        },
+      ],
+    },
+  },
 }
