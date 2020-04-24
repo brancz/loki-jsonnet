@@ -1,3 +1,3 @@
 #/usr/bin/env bash
 
-jsonnet -y test.jsonnet | kubectl create --dry-run --validate -f -
+jsonnet -y test.jsonnet | kubectl create --dry-run=client --validate -f -

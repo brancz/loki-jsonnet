@@ -449,7 +449,7 @@
           relabel_configs: [
             {
               action: 'drop',
-              regex: '',
+              regex: '^$',
               source_labels: [
                 '__meta_kubernetes_pod_annotation_kubernetes_io_config_mirror',
               ],
@@ -469,18 +469,14 @@
             },
             {
               action: 'drop',
-              regex: '',
+              regex: '^$',
               source_labels: [
                 '__service__',
               ],
             },
             {
-              action: 'labelmap',
-              regex: '__meta_kubernetes_pod_label_(.+)',
-            },
-            {
               action: 'replace',
-              replacement: null,
+              replacement: '$1',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_namespace',
@@ -510,7 +506,11 @@
               target_label: 'container_name',
             },
             {
-              replacement: '/var/log/pods/*$1/*.log',
+              action: 'labelmap',
+              regex: '__meta_kubernetes_pod_label_(.+)',
+            },
+            {
+              replacement: '/var/log/pods/$1/*.log',
               separator: '/',
               source_labels: [
                 '__meta_kubernetes_pod_annotation_kubernetes_io_config_mirror',
