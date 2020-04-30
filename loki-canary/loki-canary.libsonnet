@@ -48,7 +48,7 @@
               name: 'loki-canary',
               image: lokiCanary.config.image,
               args: [
-                '-labelname=instance',
+                '-labelname=pod',
                 '-labelvalue=$(POD_NAME)',
                 '-port=%d' % port,
                 '-addr=' + lokiCanary.config.loki.addr,
